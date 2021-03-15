@@ -31,24 +31,16 @@ public class AirportLoad implements LoadService {
         recordDatas();
     }
 
-
-
     @Override
     public void recordDatas() throws IOException {
-
         String airportFile = new String(Files.readAllBytes(getFile(PATH).toPath()));
         String[] airportLine = airportFile.split(LINE_DELIMITER);
-
 
         Arrays.stream(airportLine).forEach(aLine -> {
             ArrayList<String> airportInfo = divideLine(aLine);
 
             if (!aLine.startsWith("\"id\"")) {
                 try {
-
-                    if (airportInfo.get(0).contains("9090"))//301544
-                        logger.error("DUR");
-                    logger.error("*** : " + airportInfo.get(0));
                     Airport newAirport = Airport.builder()
                             .id(Integer.parseInt(airportInfo.get(0)))
                             .ident(!airportInfo.get(1).equals("") ? airportInfo.get(1) : "")
@@ -72,11 +64,11 @@ public class AirportLoad implements LoadService {
                             .build();
                     airportRepository.storeAirport(newAirport);
                 } catch (Exception e) {
-                    logger.error("**** airport:" + e);
+                    logger.error("**** Creating airport data occured exception: " + e);
                 }
             }
         });
-
+        logger.info("?*** AirportLoad is complete successfully");
     }
 
 

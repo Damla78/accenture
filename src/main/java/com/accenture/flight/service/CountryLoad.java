@@ -49,7 +49,7 @@ public class CountryLoad implements LoadService{
                 countryRepository.storeCountry(newCountry);
             }
         });
-
+        logger.info("?*** CountrytLoad is complete successfully");
     }
 
 

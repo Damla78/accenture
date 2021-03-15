@@ -15,15 +15,15 @@ public class Runway {
     private byte lighted;
     private byte closed;
     private String le_ident;
-    private double le_latitude_deg;
-    private double le_longitude_deg;
+    private String le_latitude_deg;
+    private String le_longitude_deg;
     private int le_elevation_ft;
     private String le_heading_degT;
     private double le_displaced_threshold_ft;
-    private double he_ident;
-    private double he_latitude_deg;
-    private double he_longitude_deg;
+    private String he_ident;
+    private String he_latitude_deg;
+    private String he_longitude_deg;
     private int he_elevation_ft;
-    private int he_heading_degT;
+    private double he_heading_degT;
     private int he_displaced_threshold_ft;
 }
