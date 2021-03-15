@@ -1,7 +1,7 @@
 package com.accenture.flight.api;
 
 import com.accenture.flight.model.Country;
-import com.accenture.flight.service.CountryService;
+import com.accenture.flight.service.CountryLoad;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,21 +12,22 @@ import java.util.List;
 
 @Controller
 public class Flight {
-    CountryService countryService;
+    //CountryLoad countryService;
 
     @Autowired
-    public Flight(CountryService countryService){
-        this.countryService = countryService;
+    public Flight(CountryLoad countryService){
+
+        //this.countryService = countryService;
     }
 
     @GetMapping("/index")
     public String viewPersonForm(Model model){
-        try {
-            List<Country> countryList = countryService.listAllCountries();
-            model.addAttribute("countryDtoList", countryList);
-        }catch (IOException ex){
-            return "error";
-        }
+//        try {
+//            List<Country> countryList = countryService.listAllCountries();
+//            model.addAttribute("countryDtoList", countryList);
+//        }catch (IOException ex){
+//            return "error";
+//        }
 
 
         return "index";
