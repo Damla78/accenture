@@ -1,10 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Damla's advanture at Accenture - Flights</title>
+
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <script type="text/javascript" th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
 </head>
 <body>
-<p>HELLO</p>
+
+<div>
+    <form action="#" th:action="@{/index}" th:object="${countryDto}" method="post">
+        <div>
+            <label for="code">Country Code</label>
+            <input type="text" th:field="*{code}" id="code" placeholder="Code"/>
+
+        </div>
+        <div>
+            <label for="cName">Country Name</label>
+            <input type="text" id="cName" name="cName" th:value="*{name}" />
+        </div>
+        <input type="submit" value="Search Runway">
+    </form>
+
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>CODE</th>
+                    <th>NAME</th>
+                    <th>CONTINENT</th>
+                    <th>WIKIPEDIA_LINK</th>
+                    <th>KEYWORDS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="fCDto: ${foundCountry}">
+                    <td th:text="${fCDto.id}"/>
+                    <td th:text="${fCDto.code}"/>
+                    <td th:text="${fCDto.name}"/>
+                    <td th:text="${fCDto.continent}"/>
+                    <td th:text="${fCDto.wikipedia_link}"/>
+                    <td th:text="${fCDto.keywords}"/>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Birth Date</th>
+            <th>Birth City</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="cDto: ${countryDtoList}">
+
+            <td th:text="${cDto.id}"/>
+            <td th:text="${cDto.code}"/>
+            <td th:text="${cDto.name}"/>
+            <td>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!--<form action="#" th:action="@{/index}" th:object="${countryDto}" method="post">
+
+
+        <label for="name">Name</label>
+        <input type="text" th:field="*{name}" id="name" placeholder="Name">
+
+        <label for="birthDate">Birth Date</label>
+        <input type="text" th:field="*{birthDate}" id="birthDate" placeholder="BirthDate">
+
+        <label for="city">City</label>
+        <input type="text" th:field="*{city}" id="city" placeholder="City">
+
+        <input type="submit" value="Add User">
+    </form>-->
+</div>
+
 </body>
 </html>
+<!--
+<body>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Birth Date</th>
+            <th>Birth City</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="pDto: ${personDtoList}">
+
+            <td th:text="${pDto.name}"/>
+            <td th:text="${pDto.birthDate}"/>
+            <td th:text="${pDto.city}"/>
+            <td>
+                <form th:method="delete" th:action="@{'/delete/{id}'(id=${pDto.id})}" action="#">
+                    <button type="submit" name="submit" value="value" class="link-button">DELETE</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+-->

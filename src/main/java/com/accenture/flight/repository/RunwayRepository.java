@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;
+import java.util.List;
 
 @Repository
 public class RunwayRepository {
@@ -59,5 +60,35 @@ public class RunwayRepository {
             }
         }
         return statusRes;
+    }
+
+    public List<Runway> retrieveRunwayByAirportRef(int cAirportRef){
+
+
+        String sql = "select * from Runway where airport_ref="+cAirportRef;
+        return  jdbcTemplate.query(sql,
+                (rs,rownum)->Runway.builder()
+                        .id(rs.getInt("id"))
+                        .airport_ref(rs.getInt("airport_ref"))
+                        .airport_ident(rs.getString("airport_ident"))
+                        .length_ft(rs.getInt("length_ft"))
+                        .width_ft(rs.getInt("width_ft"))
+                        .surface(rs.getString("surface"))
+                        .lighted(rs.getByte("lighted"))
+                        .closed(rs.getByte("closed"))
+                        .le_ident(rs.getString("le_ident"))
+                        .le_latitude_deg(rs.getString("le_latitude_deg"))
+                        .le_longitude_deg(rs.getString("le_longitude_deg"))
+                        .le_elevation_ft(rs.getInt("le_elevation_ft"))
+                        .le_heading_degT(rs.getString("le_heading_degT"))
+                        .le_displaced_threshold_ft(rs.getDouble("le_displaced_threshold_ft"))
+                        .he_ident(rs.getString("he_ident"))
+                        .he_latitude_deg(rs.getString("he_latitude_deg"))
+                        .he_longitude_deg(rs.getString("he_longitude_deg"))
+                        .he_elevation_ft(rs.getInt("he_elevation_ft"))
+                        .he_heading_degT(rs.getDouble("he_heading_degT"))
+                        .he_displaced_threshold_ft(rs.getInt("he_displaced_threshold_ft"))
+                        .build()
+        );
     }
 }

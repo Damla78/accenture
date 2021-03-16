@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Damla's advanture at Accenture - Flights</title>
+
+</head>
+<body>
+<div>
+    <table class="table">
+        <thead>
+        <tr width="100%">
+            <th width="10%">ID</th>
+            <th width="20%">CODE</th>
+            <th width="20%">NAME</th>
+            <th width="10%">CONTINENT</th>
+            <th width="20%">WIKIPEDIA_LINK</th>
+            <th width="20%">KEYWORDS</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="fCDto: ${foundCountry}">
+            <td th:text="${fCDto.id}" width="10%"/>
+            <td th:text="${fCDto.code}" width="20%"/>
+            <td th:text="${fCDto.name}" width="20%"/>
+            <td th:text="${fCDto.continent}" width="10%"/>
+            <td th:text="${fCDto.wikipedia_link}" width="20%"/>
+            <td th:text="${fCDto.keywords}" width="20%"/>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    <table class="table">
+        <thead>
+        <tr width="100%">
+            <th width="10%">ID</th>
+            <th width="10%">IDENT</th>
+            <th width="10%">TYPE</th>
+            <th width="20%">NAME</th>
+            <th width="10%">LATITUDE_DEG</th>
+            <th width="10%">LONGITUDE_DEG</th>
+            <th width="10%">ISO_COUNTRY</th>
+            <th width="10%">ISO_REGION</th>
+            <th width="10%">MUNICIPALITY</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="fADto: ${foundAirportList}">
+            <td th:text="${fADto.id}" width="10%"/>
+            <td th:text="${fADto.ident}" width="10%"/>
+            <td th:text="${fADto.type}" width="20%"/>
+            <td th:text="${fADto.name}" width="10%"/>
+            <td th:text="${fADto.latitude_deg}" width="10%"/>
+            <td th:text="${fADto.longitude_deg}" width="10%"/>
+            <td th:text="${fADto.iso_country}" width="10%"/>
+            <td th:text="${fADto.iso_region}" width="10%"/>
+            <td th:text="${fADto.municipality}" width="10%"/>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    <table class="table">
+        <thead>
+        <tr width="100%">
+            <th width="10%">ID</th>
+            <th width="10%">AIRPORT_REF</th>
+            <th width="10%">AIRPORT_IDENT</th>
+            <th width="20%">LENGTH_FT</th>
+            <th width="10%">WIDTH_FT</th>
+            <th width="10%">SURFACE</th>
+            <th width="10%">LE_IDENT</th>
+            <th width="10%">LE_LATITUDE_DEG</th>
+            <th width="10%">LE_LONGITUDE_DEG</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="fRDto: ${foundRunway}">
+            <td th:text="${fRDto.id}" width="10%"/>
+            <td th:text="${fRDto.airport_ref}" width="10%"/>
+            <td th:text="${fRDto.airport_ident}" width="20%"/>
+            <td th:text="${fRDto.length_ft}" width="10%"/>
+            <td th:text="${fRDto.width_ft}" width="10%"/>
+            <td th:text="${fRDto.surface}" width="10%"/>
+            <td th:text="${fRDto.le_ident}" width="10%"/>
+            <td th:text="${fRDto.le_latitude_deg}" width="10%"/>
+            <td th:text="${fRDto.le_longitude_deg}" width="10%"/>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

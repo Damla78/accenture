@@ -31,13 +31,6 @@ CREATE TABLE AIRPORT(
     keywords VARCHAR(500),
     PRIMARY KEY(id)
 );
-328041,
-40554,
-"TT-TT01",
-4301,
-50,
-"RWY 10 is Smooth Asphalt for 2670' then Rough Asphalt and Grass",
-0,0,"10",10.2534,61.2643,60,104,140,"28",10.2532,61.2622,60,284,323
 CREATE TABLE RUNWAY(
     id INT NOT NULL,
     airport_ref INT,

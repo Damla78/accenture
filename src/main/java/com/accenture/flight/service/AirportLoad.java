@@ -28,7 +28,7 @@ public class AirportLoad implements LoadService {
     @Autowired
     public AirportLoad(AirportRepository airportRepository) throws IOException {
         this.airportRepository = airportRepository;
-        recordDatas();
+        //recordDatas();
     }
 
     @Override

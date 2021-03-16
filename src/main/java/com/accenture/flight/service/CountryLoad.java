@@ -21,15 +21,11 @@ public class CountryLoad implements LoadService{
     private static final Logger logger = LoggerFactory.getLogger(CountryLoad.class);
     private static String PATH = "classpath:data/countries.csv";
     CountryRepository countryRepository;
-    //private static boolean runOnce = true;
 
     @Autowired
     public CountryLoad(CountryRepository countryRepository) throws IOException{//, ResourceLoader resourceLoader
         this.countryRepository = countryRepository;
-        //if(runOnce) {
-            recordDatas();
-        //    runOnce = false;
-        //}
+            //recordDatas();
     }
 
     public void recordDatas() throws IOException {
@@ -37,7 +33,6 @@ public class CountryLoad implements LoadService{
         String[] countryLine = countryFile.split(LINE_DELIMITER);
         Arrays.stream(countryLine).forEach(cLine -> {
             ArrayList<String> countryInfo = divideLine(cLine);
-            //String[] countryInfo = cLine.replace(QUOTE,EMPTY).split(COMMA_DELIMITER);
             if (!cLine.startsWith("\"id\"")) {
                 Country newCountry = Country.builder()
                         .id(Integer.parseInt(countryInfo.get(0)))
