@@ -11,26 +11,27 @@
     <table class="table">
         <thead>
         <tr width="100%">
-            <th width="10%">ID</th>
-            <th width="20%">CODE</th>
-            <th width="20%">NAME</th>
-            <th width="10%">CONTINENT</th>
-            <th width="20%">WIKIPEDIA_LINK</th>
-            <th width="20%">KEYWORDS</th>
+            <th width="10%" align="left">ID</th>
+            <th width="20%" align="left">CODE</th>
+            <th width="20%" align="left">NAME</th>
+            <th width="10%" align="left">CONTINENT</th>
+            <th width="20%" align="left">WIKIPEDIA_LINK</th>
+            <th width="20%" align="left">KEYWORDS</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="fCDto: ${foundCountry}">
-            <td th:text="${fCDto.id}" width="10%"/>
-            <td th:text="${fCDto.code}" width="20%"/>
-            <td th:text="${fCDto.name}" width="20%"/>
-            <td th:text="${fCDto.continent}" width="10%"/>
-            <td th:text="${fCDto.wikipedia_link}" width="20%"/>
-            <td th:text="${fCDto.keywords}" width="20%"/>
+            <td th:text="${fCDto.id}" width="10%" align="left"/>
+            <td th:text="${fCDto.code}" width="20%" align="left"/>
+            <td th:text="${fCDto.name}" width="20%" align="left"/>
+            <td th:text="${fCDto.continent}" width="10%" align="left"/>
+            <td th:text="${fCDto.wikipedia_link}" width="20%" align="left"/>
+            <td th:text="${fCDto.keywords}" width="20%" align="left"/>
         </tr>
         </tbody>
     </table>
 </div>
+<br><br><br>
 <div>
     <table class="table">
         <thead>
@@ -61,6 +62,7 @@
         </tbody>
     </table>
 </div>
+<br><br><br>
 <div>
     <table class="table">
         <thead>

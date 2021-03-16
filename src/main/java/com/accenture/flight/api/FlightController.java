@@ -24,7 +24,7 @@ public class FlightController {
     CountryService countryService;
     AirportService airportService;
     RunwayService runwayService;
-    private Model foundModel=null;
+    private Model foundModel = null;
 
     @Autowired
     public FlightController(CountryService countryService, AirportService airportService, RunwayService runwayService) {
@@ -42,37 +42,45 @@ public class FlightController {
     }
 
     @GetMapping("/foundrunway")
-    public String viewRunway(Model model){
+    public String viewRunway(Model model) {
         model = foundModel;
         return "foundRunway";
     }
 
     @PostMapping("/index")
     public String viewFlightSubmit(@ModelAttribute("countryDto") CountryDto countryDto, Model model) {
-        model.addAttribute("foundCountry", Country.builder().build());//TODO Do I need dummy object?
-        model.addAttribute("foundAirportList", Airport.builder().build());
-        model.addAttribute("foundRunway", Runway.builder().build());
+        //model.addAttribute("foundCountry", Country.builder().build());//TODO Do I need dummy object?
+        //model.addAttribute("foundAirportList", Airport.builder().build());
+        //model.addAttribute("foundRunway", Runway.builder().build());
 
-        Country country;
+        List<Country> countryList = null;
+        if (countryDto.code != null && !countryDto.code.equals("")) {
+            countryList = countryService.retrieveCountryByCode(countryDto.code);
+            //searchByCode(countryDto.code);
+        } else if (countryDto.name != null) {
+            countryList = countryService.retrieveCountryByName(countryDto.name);
+            //searchByName(countryDto.name);
+        }
+        if (countryList != null && countryList.size() > 0) {
+            searchRunways(countryList.get(0), model);
+        }
+        return "foundRunway";//"redirect:index";
+    }
+
+    public void searchRunways(Country country, Model model) {
         List<Airport> airportList;
         List<Runway> runwayList;
-        if(countryDto.code!=null){
-            List<Country> countryList = countryService.retrieveCountryByCode(countryDto.code);
-            if(countryList.size()!=0){
-                country = countryList.get(0);
-                model.addAttribute("foundCountry", country);
-                airportList = airportService.retrieveAirportListByIsoCountry(country.getCode());
-                if(airportList.size()!=0){
-                    model.addAttribute("foundAirportList", airportList);
-                    runwayList = runwayService.retrieveRunwayByCountryCode(country.getCode());
-                    if(runwayList.size()!=0){
-                        model.addAttribute("foundRunway", runwayList);
-                    }
-                }
+
+        model.addAttribute("foundCountry", country);
+        airportList = airportService.retrieveAirportListByIsoCountry(country.getCode());
+        if (airportList.size() != 0) {
+            model.addAttribute("foundAirportList", airportList);
+            runwayList = runwayService.retrieveRunwayByCountryCode(country.getCode());
+            if (runwayList.size() != 0) {
+                model.addAttribute("foundRunway", runwayList);
             }
         }
         foundModel = model;
-        return "foundRunway";//"redirect:index";
     }
 }
 
