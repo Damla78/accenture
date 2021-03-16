@@ -25,7 +25,7 @@ public class CountryLoad implements LoadService{
     @Autowired
     public CountryLoad(CountryRepository countryRepository) throws IOException{//, ResourceLoader resourceLoader
         this.countryRepository = countryRepository;
-            //recordDatas();
+            recordDatas();
     }
 
     public void recordDatas() throws IOException {

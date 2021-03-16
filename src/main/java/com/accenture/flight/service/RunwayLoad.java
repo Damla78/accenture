@@ -25,7 +25,7 @@ public class RunwayLoad implements LoadService{
     @Autowired
     public RunwayLoad(RunwayRepository runwayRepository) throws IOException {
         this.runwayRepository = runwayRepository;
-        //recordDatas();
+        recordDatas();
     }
 
     @Override
