@@ -24,6 +24,13 @@
         <input type="submit" value="Search Runway"><br><br>
     </form>
 </div>
+<div class="container" align="center" width="30%">
+    <form action="#" th:action="@{/topten}" method="post">
+        <div>
+            <input type="submit" value="Top 10">
+        </div>
+    </form>
+</div>
 <div class="container" align="center" width="1000%">
     <table class="table table-striped" align="center">
         <thead>
@@ -50,32 +57,3 @@
 
 </body>
 </html>
-<!--
-<body>
-<div class="container">
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Birth Date</th>
-            <th>Birth City</th>
-            <th>Delete</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="pDto: ${personDtoList}">
-
-            <td th:text="${pDto.name}"/>
-            <td th:text="${pDto.birthDate}"/>
-            <td th:text="${pDto.city}"/>
-            <td>
-                <form th:method="delete" th:action="@{'/delete/{id}'(id=${pDto.id})}" action="#">
-                    <button type="submit" name="submit" value="value" class="link-button">DELETE</button>
-                </form>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-</body>
--->

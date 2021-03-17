@@ -25,9 +25,10 @@ public class CountryLoad implements LoadService{
     @Autowired
     public CountryLoad(CountryRepository countryRepository) throws IOException{//, ResourceLoader resourceLoader
         this.countryRepository = countryRepository;
-            recordDatas();
+            //recordDatas();
     }
 
+    @Override
     public void recordDatas() throws IOException {
         String countryFile = new String(Files.readAllBytes(getFile(PATH).toPath()));
         String[] countryLine = countryFile.split(LINE_DELIMITER);

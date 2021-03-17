@@ -2,6 +2,7 @@ package com.accenture.flight.repository;
 
 import com.accenture.flight.model.Airport;
 import com.accenture.flight.model.Country;
+import com.accenture.flight.model.Topten;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +71,20 @@ public class AirportRepository {
                         .keywords(rs.getString("keywords"))
                         .build()
         );
+    }
+
+    public List<Topten> retrieveTopTen() {
+        String sql = "SELECT count(*) count,airport.iso_country code, country.name name\n" +
+                "FROM airport\n" +
+                "INNER JOIN country ON country.code=airport.iso_country\n" +
+                "GROUP BY code, name\n" +
+                "ORDER BY count desc\n" +
+                "limit 10;";
+        return jdbcTemplate.query(sql,
+                (rs, number) -> Topten.builder()
+                        .count(rs.getInt("count"))
+                        .code(rs.getString("code"))
+                        .name(rs.getString("name")).build());
     }
 }
 

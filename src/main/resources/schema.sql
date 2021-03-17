@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS flightdb;
-CREATE DATABASE flightdb;
-USE flightdb;
-CREATE TABLE COUNTRY (
+DROP DATABASE IF EXISTS accenturedb;
+CREATE DATABASE accenturedb;
+USE accenturedb;
+CREATE TABLE country (
     id INT NOT NULL,
     code VARCHAR(10),
     name VARCHAR(60),
@@ -10,7 +10,7 @@ CREATE TABLE COUNTRY (
     keywords VARCHAR(500),
     PRIMARY KEY(id)
 );
-CREATE TABLE AIRPORT(
+CREATE TABLE airport(
     id INT NOT NULL,
     ident VARCHAR(10),
     type VARCHAR(50),
@@ -31,7 +31,7 @@ CREATE TABLE AIRPORT(
     keywords VARCHAR(500),
     PRIMARY KEY(id)
 );
-CREATE TABLE RUNWAY(
+CREATE TABLE runway(
     id INT NOT NULL,
     airport_ref INT,
     airport_ident VARCHAR(15),

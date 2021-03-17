@@ -3,10 +3,8 @@ package com.accenture.flight.api;
 import com.accenture.flight.model.Airport;
 import com.accenture.flight.model.Country;
 import com.accenture.flight.model.Runway;
-import com.accenture.flight.service.AirportService;
-import com.accenture.flight.service.CountryLoad;
-import com.accenture.flight.service.CountryService;
-import com.accenture.flight.service.RunwayService;
+import com.accenture.flight.model.Topten;
+import com.accenture.flight.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,13 +22,43 @@ public class FlightController {
     CountryService countryService;
     AirportService airportService;
     RunwayService runwayService;
+    CountryLoad countryLoad;
+    AirportLoad airportLoad;
+    RunwayLoad runwayLoad;
     private Model foundModel = null;
 
     @Autowired
-    public FlightController(CountryService countryService, AirportService airportService, RunwayService runwayService) {
+    public FlightController(CountryService countryService, AirportService airportService, RunwayService runwayService,
+                            CountryLoad countryLoad, AirportLoad airportLoad, RunwayLoad runwayLoad) {
         this.countryService = countryService;
         this.airportService = airportService;
         this.runwayService = runwayService;
+        this.countryLoad = countryLoad;
+        this.airportLoad = airportLoad;
+        this.runwayLoad = runwayLoad;
+    }
+
+    @GetMapping("/load")
+    public String viewLoad(Model model){
+        return "load";
+    }
+    @PostMapping("/load")
+    public void loadData(Model model){
+        try{
+            countryLoad.recordDatas();
+            airportLoad.recordDatas();
+            runwayLoad.recordDatas();
+        }catch (IOException exception){
+            //logger add
+        }
+
+    }
+
+    @PostMapping("/topten")
+    public String viewTopTen(Model model){
+        List<Topten> topTenAirportsByCountry = airportService.getTopTenAirportsByCountry();
+        model.addAttribute("topTenDtoList", topTenAirportsByCountry);
+        return "topten";
     }
 
     @GetMapping("/index")
