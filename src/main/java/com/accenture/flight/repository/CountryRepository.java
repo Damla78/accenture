@@ -8,8 +8,6 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -24,7 +22,7 @@ public class CountryRepository {
     public int storeCountry(Country country) {
         int statusRes = 0;
         try {
-            statusRes = jdbcTemplate.update("INSERT INTO COUNTRY(id, code, name, continent, wikipedia_link, keywords) VALUES (?,?,?,?,?,?)",
+            statusRes = jdbcTemplate.update("INSERT INTO country(id, code, name, continent, wikipedia_link, keywords) VALUES (?,?,?,?,?,?)",
                     country.getId(), country.getCode(), country.getName(), country.getContinent(), country.getWikipedia_link(), country.getKeywords());
         } catch (DataAccessException e) {
             logger.error("Problem for data access in Country. Country.ID=" + country.getId());
@@ -41,7 +39,7 @@ public class CountryRepository {
     }
 
     public List<Country> getCountry(int countryId) {
-        String sql = "SELECT * FROM COUNTRY WHERE ID = " + countryId;
+        String sql = "SELECT * FROM country WHERE ID = " + countryId;
         return jdbcTemplate.query(sql,
                 (rs, rownum) -> Country.builder()
                         .id(rs.getInt("id"))
@@ -54,7 +52,7 @@ public class CountryRepository {
     }
 
     public List<Country> getCountryList() {
-        String sql = "SELECT * FROM COUNTRY";
+        String sql = "SELECT * FROM country";
         return jdbcTemplate.query(sql,
                 (rs, rownum) -> Country.builder()
                         .id(rs.getInt("id"))
@@ -67,7 +65,7 @@ public class CountryRepository {
     }
 
     public List<Country> getCountryByCode(String cCode) {
-        String sql = "SELECT * FROM COUNTRY WHERE CODE LIKE '" + cCode + "%'";
+        String sql = "SELECT * FROM country WHERE CODE LIKE '" + cCode.toUpperCase() + "%'";
         return jdbcTemplate.query(sql,
                 (rs, rownum) -> Country.builder()
                         .id(rs.getInt("id"))
@@ -80,7 +78,7 @@ public class CountryRepository {
     }
 
     public List<Country> getCountryByName(String cName) {
-        String sql = "SELECT * FROM COUNTRY WHERE NAME LIKE '" + cName + "%'";
+        String sql = "SELECT * FROM country WHERE NAME LIKE '" + cName.toUpperCase() + "%'";
         return jdbcTemplate.query(sql,
                 (rs, rownum) -> Country.builder()
                         .id(rs.getInt("id"))

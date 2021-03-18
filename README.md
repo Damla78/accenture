@@ -1,11 +1,67 @@
-docker pull mysql
-docker pull openjdk:8
+**DOCKER SHOULD INCLUDE**
 
-    docker run --detach --name accenture-mysql-2 -p 3307:3306 -e MYSQL_ROOT_PASSWORD=root \
-    -e MYSQL_DATABASE=accenturedb -e MYSQL_USER=sa -e MYSQL_PASSWORD=sa -d mysql
+    docker pull mysql
+    docker pull openjdk:8
+
+**CREATE NETWORK**
+    
+    docker network create accenture-network
+
+**CREATE MYSQL CONTAINER**
+
+    docker run --detach \
+    --name accenture-mysql \
+    --net=accenture-network\
+    -p 3307:3306 \
+    -e MYSQL_ROOT_PASSWORD=root \
+    -e MYSQL_DATABASE=accenturedb \
+    -e MYSQL_USER=sa \
+    -e MYSQL_PASSWORD=sa \
+    -d mysql
+
+**LOAD SCHEMA TO DOCKER**
+(a0 => ????)
+-In terminal, type 'docker container ls'.
+-take the container Id which you created.
+-replace with 'e0'
+-After replacing, run below command.
+
+    docker exec -i e0 mysql -uroot -proot < src/main/resources/schema.sql 
+
+
+**BUILD**
+In intellij terminal, type below command
+    
+    docker build . -t accenture-spring
+
+**RUN IMAGE**
+
+    docker run -dit -p 8080:8080 --net=accenture-network accenture-spring
+or
+    docker run -dit -p 8080:8080 --net=accenture-network accenture-spring
+
+-Go to localhost:8080/load
+-Load data only one times. It will take some time to load all data.
+When you see below 3 command in terminal, load process is completed successfully.
+    ?*** CountrytLoad is complete successfully
+    ?*** AirportLoad is complete successfully
+    ?*** CountrytLoad is complete successfully
+Locally it takes short time but in docker takes some time. Please wait
+
+
+-Go to localhost:8080/index
+-Search country with code or name. If you enter both option then code will be proceed. 
+ If you enter not complete code, first found result will be shown.
+-Back to localhost:8080/
+
+
+
+**DELETE BELOW! NOTE FOR MYSELF**
 FileName
 docker exec -i e0 mysql -uroot -proot < src/main/resources/schema.sql
 docker run --net=host   test-accenture-spring
+docker run -p 8080:8080 --name accenture-spring --link accenture-mysql-2:mysql -d accenture-spring
+
 
 
 docker run --name accenture-mysql -e 

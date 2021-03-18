@@ -1,7 +1,6 @@
 package com.accenture.flight.repository;
 
 import com.accenture.flight.model.Airport;
-import com.accenture.flight.model.Country;
 import com.accenture.flight.model.Topten;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,7 +47,7 @@ public class AirportRepository {
     }
 
     public List<Airport> retrieveAirportsByCountryCode(String cCode) {
-        String sql = "select * from airport where iso_country='" + cCode + "'";
+        String sql = "select * from airport where iso_country='" + cCode.toUpperCase() + "'";
         return jdbcTemplate.query(sql,
                 (rs, rownum) -> Airport.builder()
                         .id(rs.getInt("id"))

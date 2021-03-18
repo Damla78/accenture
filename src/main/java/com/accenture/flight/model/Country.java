@@ -6,7 +6,6 @@ import lombok.*;
 @Getter
 @Setter
 @Builder(access = AccessLevel.PUBLIC)
-//@NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Country {
     int id;
     String code;
@@ -15,7 +14,7 @@ public class Country {
     String wikipedia_link;
     String keywords;
 
-    public CountryDto toCountryDto(){
+    public CountryDto toCountryDto() {
         return CountryDto.builder()
                 .id(this.id)
                 .code(this.code)

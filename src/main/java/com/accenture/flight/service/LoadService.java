@@ -36,7 +36,6 @@ public interface LoadService {
         } else {
             resultList.add(lineDivededQuote[firstInd]);
         }
-
     }
 
     default void retrieveDataBeforeQuote(ArrayList<String> resultList, int firstInd, String[] lineDivededQuote) {

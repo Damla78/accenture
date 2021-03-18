@@ -19,11 +19,6 @@ public class CountryService {
         this.countryRepository = countryRepository;
     }
 
-//    public List<Country> getCountry(int countryId){
-//        return countryRepository.getCountry(countryId);
-//    }
-//    public List<Country> getCountryList(){return countryRepository.getCountryList();}
-
     public List<CountryDto> listAllCountryDtos() {
         List<Country> countryList = countryRepository.getCountryList();
         List<CountryDto> countryDtoList = countryList.stream().map(country -> country.toCountryDto()).collect(Collectors.toList());
@@ -35,7 +30,7 @@ public class CountryService {
         return countryRepository.getCountryByCode(cCode);
     }
 
-    public List<Country> retrieveCountryByName(String cName){
+    public List<Country> retrieveCountryByName(String cName) {
         return countryRepository.getCountryByName(cName);
     }
 

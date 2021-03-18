@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Damla's advanture at Accenture - Flights</title>
 
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}"/>
+    <script th:href="@{/webjars/jquery/3.1.1/jquery.min.js} "></script>
+
 </head>
 <body>
 <div>
-    <table class="table">
+    <table class="table table-striped">
         <thead>
         <tr width="100%">
             <th width="10%" align="left">ID</th>
@@ -33,7 +36,7 @@
 </div>
 <br><br><br>
 <div>
-    <table class="table">
+    <table class="table table-striped">
         <thead>
         <tr width="100%">
             <th width="10%">ID</th>
@@ -64,7 +67,7 @@
 </div>
 <br><br><br>
 <div>
-    <table class="table">
+    <table class="table table-striped">
         <thead>
         <tr width="100%">
             <th width="10%">ID</th>
@@ -79,7 +82,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="fRDto: ${foundRunway}">
+        <tr th:each="fRDto: ${foundrunway}">
             <td th:text="${fRDto.id}" width="10%"/>
             <td th:text="${fRDto.airport_ref}" width="10%"/>
             <td th:text="${fRDto.airport_ident}" width="20%"/>
